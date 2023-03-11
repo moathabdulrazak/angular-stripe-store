@@ -1,4 +1,3 @@
-
 export interface Cart{
   items: Array<CartItem>;
 }
