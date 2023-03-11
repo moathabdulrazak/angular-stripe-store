@@ -18,11 +18,11 @@ cart: Cart = {items: [{
 dataSource: Array<CartItem> = [];
 displayedColumns: Array <string> = [
 'product',
-'name',
-'price',
-'quantity',
-'total',
-'action',
+// 'name',
+// 'price',
+// 'quantity',
+// 'total',
+// 'action',
 ];
 
  constructor () {}
