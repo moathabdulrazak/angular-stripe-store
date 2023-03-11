@@ -10,15 +10,15 @@ export class CartComponent implements OnInit {
   cart: Cart = { items: [    {
     product: 'https://via.placeholder.com/150x150',
     name: 'Product 1',
-    price: 10.99,
-    quantity: 2,
+    price: 150,
+    quantity: 1,
     id: 1,
   },
   {
     product: 'https://via.placeholder.com/150x150',
     name: 'Product 2',
-    price: 5.99,
-    quantity: 1,
+    price: 150,
+    quantity: 3,
     id: 2,
   },
 ] };
