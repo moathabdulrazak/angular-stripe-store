@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 import { Cart, CartItem } from '../models/cart.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,5 +28,11 @@ this.cart.next({items});
 this._snackBar.open('1 item added to cart.', 'Keep Shopping', {duration: 3000} )
 console.log(this.cart.value, "value");
 
+  }
+  getTotal(items: Array<CartItem>): string {
+    const total = items
+      .map((item) => item.price * item.quantity)
+      .reduce((prev, current) => prev + current, 0);
+    return total.toFixed(2);
   }
 }
