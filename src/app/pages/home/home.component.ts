@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
   onShowCategory(newCategory: string): void {
     this.category = newCategory;
     console.log(this.category, "cate");
+    console.log(newCategory);
+    
     
   }
 }
