@@ -27,4 +27,8 @@ export class HomeComponent implements OnInit {
     
     
   }
+
+  onAddToCart(): void {
+
+  }
 }
