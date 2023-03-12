@@ -7,6 +7,7 @@ import { Cart, CartItem } from '../models/cart.model';
   providedIn: 'root'
 })
 export class CartService {
+
   
   private cartKey = 'cart';
   cart = new BehaviorSubject<Cart>({ items: [] });
@@ -47,12 +48,40 @@ export class CartService {
     localStorage.removeItem(this.cartKey);
   }
 
-  removeFromCart(item: CartItem): void {
+  removeFromCart(item: CartItem, update = true ): Array<CartItem> {
 const filteredItems =  this.cart.value.items.filter(
   (_item) => _item.id !== item.id
 );
 
-this.cart.next({items: filteredItems})
-this._snackBar.open('item was removed', 'keep shopping', {duration: 3000})
+if(update){
+  this.cart.next({items: filteredItems})
+  this._snackBar.open('item was removed', 'keep shopping', {duration: 3000})
+}
+
+return filteredItems;
   }
+
+  removeQuantity(item: CartItem): void {
+    let itemforRemoval: CartItem | undefined;
+    let filteredItems = this.cart.value.items.map((_item) => {
+      if (_item.id === item.id) {
+        _item.quantity -= 1;
+      }
+  
+      if (_item.quantity === 0) {
+        itemforRemoval = _item;
+      }
+  
+      return _item;
+    });
+  
+    if (itemforRemoval) {
+      filteredItems = this.removeFromCart(itemforRemoval, false);
+    }
+  
+    this.cart.next({ items: filteredItems });
+    this._snackBar.open('Quantity of item was updated.', 'Keep Shopping', { duration: 3000 });
+    localStorage.setItem(this.cartKey, JSON.stringify(this.cart.value));
+  }
+  
 }
