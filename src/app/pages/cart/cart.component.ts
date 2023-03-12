@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { loadStripe } from '@stripe/stripe-js';
 import { Cart, CartItem } from 'src/app/models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -70,7 +71,14 @@ this.cartService.addToCart(item);
 this.cartService.removeQuantity(item);
   }
 
-  onCHeckout(): void{
-  this.http.post()
+  onCheckout(): void{
+  this.http.post('http://localhost:4242/checkout', {
+    items: this.cart.items
+  }).subscribe(async(res: any) => {
+    let stripe = await loadStripe('pk_test_51MkpIzB7ClxKlRh2G67hBFfpmN7s5Te1rNG9bRPbMJf2fidR2PZeWKCeh7Luk5IvXv77lCYXTcZv5PkpWnSQaNYE007FSHs3YA');
+    stripe?.redirectToCheckout({
+      sessionId: res.id
+    })
+  })
   }
 }
