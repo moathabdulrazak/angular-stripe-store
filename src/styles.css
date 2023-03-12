@@ -14,3 +14,74 @@ body { margin: 0; font-family: fantasy, "Helvetica Neue", sans-serif; }
   padding-top: 3px;
   font-size: 28px;
 }
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+}
+
+.product-details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.product-category {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #4a5568;
+}
+
+.product-title {
+  margin: 10px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.product-description {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+.product-price {
+  font-size: 20px;
+  font-weight: 600;
+  color: #e53e3e;
+}
+
+.add-to-cart-button {
+  background-color: #e2e8f0;
+  color: #4a5568;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+  background-color: #cbd5e0;
+}

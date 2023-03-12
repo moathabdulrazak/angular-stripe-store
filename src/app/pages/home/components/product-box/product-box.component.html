@@ -1,29 +1,29 @@
 
 <mat-card *ngIf="product" [ngClass]="{ 'text-center': !fullWidthMode }">
-  <div [ngClass]="{ flex: fullWidthMode }">
+  <div class="product-image" [ngClass]="{ flex: fullWidthMode }">
     <img
       class="mb-1 mx-auto"
       [ngClass]="{ 'h-[200px]': !fullWidthMode, 'h-[360px]': fullWidthMode }"
-      [src]="product.image" >"
+      [src]="product.image" >
     <div
-      class="w-full"
+      class="product-details w-full"
       [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }"
     >
       <div>
-        <h5>{{product.category}}</h5>
+        <h5 class="product-category">{{product.category}}</h5>
         <p
-          class="truncate hover:whitespace-normal"
+          class="product-title truncate hover:whitespace-normal"
           [ngClass]="{ truncate: !fullWidthMode }"
         >
-        <p>{{product.title}}
+          {{product.title}}
         </p>
-        <p *ngIf="fullWidthMode">
+        <p class="product-description" *ngIf="fullWidthMode">
           {{product.description}}
         </p>
       </div>
       <div class="flex justify-between">
-        <span class="text-red-400">{{ product.price | currency }}</span>
-        <button (click)="onAddToCart()" >
+        <span class=" product-price  text-red-400">{{ product.price | currency }}</span>
+        <button class="" (click)="onAddToCart()" >
           <mat-icon class="text-gray-500" >shopping_cart</mat-icon>
         </button>
       </div>
