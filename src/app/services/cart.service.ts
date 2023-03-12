@@ -7,10 +7,15 @@ import { Cart, CartItem } from '../models/cart.model';
   providedIn: 'root'
 })
 export class CartService {
-  cart = new BehaviorSubject<Cart>({ items: [] })
+  private cartKey = 'cart';
+  cart = new BehaviorSubject<Cart>({ items: [] });
 
-  constructor(private _snackBar: MatSnackBar) { }
-
+  constructor(private _snackBar: MatSnackBar) { 
+    const storedCart = localStorage.getItem(this.cartKey);
+    if (storedCart) {
+      this.cart.next(JSON.parse(storedCart));
+    }
+  }
 
   addToCart(item: CartItem): void {
     const items = [...this.cart.value.items]
@@ -24,10 +29,10 @@ export class CartService {
     }
 
     this.cart.next({ items });
-    this._snackBar.open('1 item added to cart.', 'Keep Shopping', { duration: 3000 })
-    console.log(this.cart.value, "value");
-
+    this._snackBar.open('1 item added to cart.', 'Keep Shopping', { duration: 3000 });
+    localStorage.setItem(this.cartKey, JSON.stringify(this.cart.value));
   }
+
   getTotal(items: Array<CartItem>): string {
     const total = items
       .map((item) => item.price * item.quantity)
@@ -35,8 +40,9 @@ export class CartService {
     return total.toFixed(2);
   }
 
-  clearCart(): void{
-this.cart.next({items: []});
-this._snackBar.open('Cart is cleared', 'keep shopping', {duration: 3000});
+  clearCart(): void {
+    this.cart.next({items: []});
+    this._snackBar.open('Cart is cleared', 'keep shopping', {duration: 3000});
+    localStorage.removeItem(this.cartKey);
   }
 }
