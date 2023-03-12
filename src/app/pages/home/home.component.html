@@ -4,7 +4,7 @@
     </mat-drawer>
   
     <mat-drawer-content class="p-6">
-      <app-products-header (columnsCountChange)="onColumnsCountChange($event)"></app-products-header>
+      <app-products-header (sortChange)="onSortChange($event)"  (itemsCountChange)="onItemsCountChange($event)"  (columnsCountChange)="onColumnsCountChange($event)"></app-products-header>
       <mat-grid-list 
       gutterSize="16" 
       [cols]="cols" 
