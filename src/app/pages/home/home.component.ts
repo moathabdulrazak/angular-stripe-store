@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getProducts(): void{
- this.productsSubscription = this.storeService.getAllProducts(this.count, this.sort).subscribe((_products) => {this.products = _products})
+ this.productsSubscription = this.storeService.getAllProducts(this.count, this.sort, this.category).subscribe((_products) => {this.products = _products})
   }
 
   onColumnsCountChange(colsNum: number): void {
@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.category = newCategory;
     console.log(this.category, "cate");
     console.log(newCategory);
-    
+    this.getProducts();
     
   }
 
