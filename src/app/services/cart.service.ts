@@ -7,6 +7,7 @@ import { Cart, CartItem } from '../models/cart.model';
   providedIn: 'root'
 })
 export class CartService {
+  
   private cartKey = 'cart';
   cart = new BehaviorSubject<Cart>({ items: [] });
 
@@ -44,5 +45,14 @@ export class CartService {
     this.cart.next({items: []});
     this._snackBar.open('Cart is cleared', 'keep shopping', {duration: 3000});
     localStorage.removeItem(this.cartKey);
+  }
+
+  removeFromCart(item: CartItem): void {
+const filteredItems =  this.cart.value.items.filter(
+  (_item) => _item.id !== item.id
+);
+
+this.cart.next({items: filteredItems})
+this._snackBar.open('item was removed', 'keep shopping', {duration: 3000})
   }
 }
